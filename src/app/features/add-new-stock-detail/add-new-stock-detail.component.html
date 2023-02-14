@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="display" [modal]="true" [style]="{width: '800px', height: '300px'}">
+    <p-header>Add New Stock Details</p-header>
+
+    <div class="row">
+        <label class="col-lg-6">Stock Symbol:</label>
+        <div class="col-lg-6">
+            <p-autoComplete [(ngModel)]="stockDetailFilter" [suggestions]="stockDetailSuggestion" field="symbol" appendTo="body" placeholder="Type Stock Name"
+                (completeMethod)="searchStockNameByQuery($event)"></p-autoComplete>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <label class="col-lg-6">Stock Name:</label>
+        <div class="col-lg-6">
+            <p-autoComplete [disabled]=true [(ngModel)]="stockDetailFilter"  field="stockName"  placeholder="Stock Name">
+            <ng-template let-stockDetail pTemplate="item">
+                <textarea style="width: 100%">{{stockDetail.stockName}}</textarea>
+            </ng-template>
+            </p-autoComplete>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <label class="col-lg-6">Stock Sector:</label>
+        <div class="col-lg-6">
+            <p-dropdown [options]="SECTORS" [(ngModel)]="selectedSector" appendTo="body" defaultLabel="Select Stock Sector"></p-dropdown>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+      <button pButton type="button" [disabled]="!(selectedSector && stockDetailFilter)" style="float: right;" label="Add" (click)="addNewStockDetails()"></button>
+    </div>
+    </div>
+</p-dialog>

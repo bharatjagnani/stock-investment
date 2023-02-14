@@ -1,0 +1,45 @@
+<p-dialog [(visible)]="display" [modal]="true" [style]="{width: '800px', height: '500px'}">
+    <p-header>Purchase New Stock</p-header>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Purchase Owner:</label>
+        <div class="col-lg-6">
+            <p-dropdown [options]="users" optionLabel= "userName" [(ngModel)]="selectedUser" appendTo="body" placeholder="Select Purchase Owner"></p-dropdown>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Select Stock:</label>
+        <div class="col-lg-6">
+            <p-dropdown [options]="stockDetails" optionLabel= "stockName" [(ngModel)]="selectedStock" appendTo="body" placeholder="Select Stock To Purchase"></p-dropdown>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Select Quantity:</label>
+        <div class="col-lg-6">
+            <input type="input" placeholder="Purchase Quantity" [(ngModel)]="stockQuantity" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Purchase Rate:</label>
+        <div class="col-lg-6">
+            <input type="input" placeholder="Purchase Rate" [(ngModel)]="stockPurchaseRate" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Purchase Date:</label>
+        <p-calendar [(ngModel)]="purchaseDate" [monthNavigator]=true [yearNavigator]=true [showIcon]=true
+            placeholder="Enter Date of Purchase" [dateFormat]="dateFormat" appendTo="body" [showButtonBar]=true>
+        </p-calendar>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-8">
+            <button pButton type="button" [disabled]="!(selectedUser && selectedStock && stockQuantity && stockPurchaseRate && purchaseDate)" style="float: right;"
+                label="Save" (click)="addNewStockPurchaseDetails()"></button>
+        </div>
+    </div>
+</p-dialog>

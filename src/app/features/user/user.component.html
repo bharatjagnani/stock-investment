@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h2>User Details</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 align-right">
+            <button pButton type="button"  pTooltip = "Add a user" class="fa fa-user-plus" aria-hidden="true"
+                (click)="addNewUserDetail.showNewUserDetailTemplate()"></button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+            <p-table [value]="users" [resizableColumns]=true immutable=false loadingIcon="fa fa-spinner" [rows]="10"
+                [rowsPerPageOptions]="[10,20]" [paginator]=true [pageLinks]="3" dataKey="userId" editable=true>
+                <ng-template pTemplate="header">
+                    <tr>
+
+                        <th style="text-align:center" headerStyleClass="datatable-header" header="User ID"
+                            [pSortableColumn]="'userId'">
+                            User ID
+                            <p-sortIcon [field]="'userId'"></p-sortIcon>
+                        </th>
+
+                        <th style="text-align:center" headerStyleClass="datatable-header" header="User Name"
+                            [pSortableColumn]="'userName'">
+                            User Name
+                            <p-sortIcon [field]="'userName'"></p-sortIcon>
+                        </th>
+
+                        <th style="text-align:center" headerStyleClass="datatable-header" header="Date Of Birth"
+                            [pSortableColumn]="'dateOfBirth'">
+                            Date Of Birth
+                            <p-sortIcon [field]="'dateOfBirth'"></p-sortIcon>
+                        </th>
+
+
+                        <th style="text-align:center" headerStyleClass="datatable-header" header="Create Time Stamp"
+                            [pSortableColumn]="'createTimeStamp'">
+                            Create Time Stamp
+                            <p-sortIcon [field]="'createTimeStamp'"></p-sortIcon>
+                        </th>
+
+                        <th style="text-align:center" headerStyleClass="datatable-header" header="Delete Row"
+                            [pSortableColumn]="'deleteRecord'">
+                            Delete Record
+                            <p-sortIcon [field]="'deleteRecord'"></p-sortIcon>
+                        </th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user>
+                    <tr>
+                        <td style="text-align:center">{{ user.userId}}</td>
+
+                        <td style="text-align:center">
+                            <a pTooltip="Get User investments" class="link-div" [routerLink]="['/home/stock-purchase',{userId: user.userId}]">
+                                {{user.userName}}
+                            </a>
+                        </td>
+
+                        <td style="text-align:center">{{ user.dateOfBirth}}</td>
+
+                        <td style="text-align:center">{{ user.createTimeStamp}}</td>
+
+                        <td style="text-align:center">
+                            <button type="button" pTooltip = "Delete user" class="ui-button" icon="fa fa-trash-o" pButton
+                                (click)="deleteRecord(user)">
+                            </button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <app-add-new-user #addNewUserDetail></app-add-new-user>
+</div>

@@ -1,0 +1,80 @@
+<p-dialog [(visible)]="display" [modal]="true" [style]="{width: '800px', height: '500px'}">
+    <p-header>Sell Owned Stock</p-header>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Stock Owner:</label>
+        <div class="col-lg-6">
+            <p-dropdown [options]="users" optionLabel="userName" [(ngModel)]="selectedUser" appendTo="body"
+                (onChange)="onUserSelected()" placeholder="Select Stock Owner"></p-dropdown>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Select Stock:</label>
+        <div class="col-lg-6">
+            <p-dropdown [options]="stockDetails" optionLabel="stockName" [disabled]="!(stockDisplay)"
+                (onChange)="onStockSelected()" [(ngModel)]="selectedStock" appendTo="body"
+                placeholder="Select Stock To Sell"></p-dropdown>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-2">Sell Quantity:</label>
+        <div class="col-lg-1">
+            <ng-template [ngIf]="!(stockQuantityDisplay)">
+                <label>(max: </label>
+            </ng-template>
+        </div>
+        <div class="col-lg-1">
+            <ng-template [ngIf]="!(stockQuantityDisplay)">
+                <label>{{availableStockQuantity}}) </label>
+            </ng-template>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-6">
+            <input type="input" placeholder="Sell Quantity" [disabled]="(stockQuantityDisplay)"
+                (change)="onStockQtyPriceSelected()" [(ngModel)]="selectedStockQuantity" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Selling Stock Rate:</label>
+        <div class="col-lg-6">
+            <input type="number" placeholder="Selling Stock Rate"  [disabled]="(stockQuantityDisplay)"
+                (change)="onStockQtyPriceSelected()" [(ngModel)]="selectedStockPrice" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Total Price:</label>
+        <div class="col-lg-6">
+            <label placeholder="Selling Stock Rate:">{{totalPrice}}</label>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">Sell Date:</label>
+        <p-calendar [(ngModel)]="sellDate" [monthNavigator]=true [yearNavigator]=true [showIcon]=true
+            placeholder="Enter Date of Selling" [dateFormat]="dateFormat" appendTo="body" [showButtonBar]=true>
+        </p-calendar>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-8">
+            <button pButton type="button"
+                [disabled]="!(selectedUser && selectedStock && selectedStockQuantity && selectedStockPrice && sellDate)"
+                style="float: right;" label="Sell" (click)="sellStockDetails()"></button>
+        </div>
+    </div>
+    <p-footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul>
+                    <li *ngFor="let item of warningMessage" class="alert alert-danger">
+                        {{item.key}} : {{item.value}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </p-footer>
+</p-dialog>

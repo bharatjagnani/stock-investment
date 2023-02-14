@@ -1,0 +1,42 @@
+<p-dialog [(visible)]="display" [modal]="true" [style]="{width: '800px', height: '500px'}">
+    <p-header>Add New User Details</p-header>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">User Name:</label>
+        <div class="col-lg-6">
+            <input type="input" placeholder="Enter the username" [(ngModel)]="userName"/>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">DOB:</label>
+        <p-calendar [(ngModel)]="dateOfBirth" [monthNavigator]=true [yearNavigator]=true [showIcon]=true
+            placeholder="Enter Date of birth" [dateFormat]="dateFormat" appendTo="body" [showButtonBar]=true>
+        </p-calendar>
+    </div>
+    <br />
+    <div class="row">
+        <label class="col-lg-6">password:</label>
+        <div class="col-lg-6">
+            <input type="input" placeholder="Enter the password" [(ngModel)]="password"/>
+        </div>
+    </div>
+    <br />
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <button pButton type="button" [disabled]="userFormValidation()" style="float: right;"
+                label="Add User" (click)="addNewUserDetails()"></button>
+        </div>
+    </div>
+    <p-footer>
+        <div class="row">
+            <div class="col-lg-6">
+                <ng-template [ngIf]= "warningMessage">
+                <label class="alert alert-danger">Warning : {{warningMessage}}!!</label>
+            </ng-template>
+
+            </div>
+        </div>
+    </p-footer>
+</p-dialog>

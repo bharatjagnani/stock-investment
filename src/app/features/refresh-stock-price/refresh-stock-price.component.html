@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <label>Total stocks to refresh the price rate: </label>
+                </div>
+                <div class="col-lg-4">
+                    <span>{{stockCount}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label>Estimated time: </label>
+                </div>
+                <div class="col-lg-6">
+                    <span>{{estimatedTime}} min/s</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+        <div class ="row">
+            <div class = "col-lg-4">
+                <label>Last updated: </label>
+            </div>
+            <div class = "col-lg-6">
+                <label>{{lastUpdated}}</label>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <button [disabled]="!(display)" type="button" pButton
+                style="width:50%; margin-left:25%; margin-right:25%;margin-top:10%" label="Refresh Stock Price"
+                icon="fa fa-refresh" (click)="refreshStockPrice()"></button>
+        </div>
+    </div>
+</div>

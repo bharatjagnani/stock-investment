@@ -1,0 +1,25 @@
+<p-sidebar [(visible)]="display">
+     <p-panelMenu [model]="menuIemsArray"></p-panelMenu>
+</p-sidebar>
+
+<ng-template [ngIf]="showNav">
+     <div class="row">
+          <div class="col-lg-2">
+               <p-button type="button" class="btn-menu" (click)="displayNav()" icon="pi pi-list"></p-button>
+          </div>
+          <div class="col-lg-8"></div>
+          <div class="col-lg-2">
+               <div class="row">
+                    <div class="col-lg-6">
+
+                         {{userName}}
+                    </div>
+                     <div class="col-lg-6">
+
+                         <a pTooltip="logout" class="link-div" [routerLink]="['/home/login']"> logout</a>
+
+                    </div>
+               </div>
+          </div>
+     </div>
+</ng-template>
